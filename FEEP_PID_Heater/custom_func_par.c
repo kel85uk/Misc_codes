@@ -1,3 +1,4 @@
+/* Code to hook a User-Defined Function in FLUENT to add a heater source power with a PID controller */
 #include "udf.h"
 
 #define NUM_UDM 3
