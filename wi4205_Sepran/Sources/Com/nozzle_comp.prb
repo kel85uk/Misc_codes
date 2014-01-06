@@ -1,0 +1,53 @@
+# input file incompressible flow in nozzle
+#
+#
+#  Define some general constants
+#
+constants           
+   vector_names
+      potential
+      velocity
+      velocityx
+      velocityy
+   variables
+      mass
+end
+
+#
+#  Define the type of problem to be solved (manual 4.8.1) 
+#
+problem                    
+   types                                               
+      elgrp1 = (type=1)     	#internal elements 
+   natbouncond
+      bngrp1 = (type=2)		#boundary elements on Gamma 2
+      bngrp2 = (type=3)      	#boundary elements on Gamma 4
+   bounelements
+      belm1 = curves(c6)	#Gamma 2
+      belm2 = curves(c2)	#Gamma 2
+end
+
+#
+#  Define the structure of the large matrix (manual 4.8.2)
+#
+structure
+   matrix_structure: storage_scheme = compact, symmetric		# save as compact matrix to force using an iterative method (because of singular matrix)
+#      symmetric                  	# symmetric matrix
+   create_vector potential 
+   solve_nonlinear_system: potential, accuracy = 1e-4, maxiter=100, print_level=2, iteration_method = standard
+   derivatives, velocityx, icheld = 1, input_vector = potential
+   derivatives, velocityy, icheld = 2, input_vector = potential
+   velocity = (velocityx,velocityy)
+   mass = integral, potential
+   
+   print potential
+   print velocityx
+   print velocityy
+   print mass
+   plot_vector velocity
+   plot_contour potential
+   plot_coloured_levels potential
+   plot_coloured_levels velocityx
+end
+
+end_of_sepran_input
