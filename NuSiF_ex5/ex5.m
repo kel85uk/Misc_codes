@@ -124,7 +124,11 @@ Pplot = reshape(sol(2*Nx*Ny+1:3*Nx*Ny),Nx,Ny);
 figure(3)
 surfc(XP,YP,Pplot);
 view([0 90])
-figure(4)
+
+figure(4);
+quiver(XP',YP',Uplot,Vplot);
+
+figure(5)
 spy(Aall)
 %format compact
 %full(Aall)
