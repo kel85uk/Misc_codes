@@ -15,7 +15,7 @@ public class Client extends JFrame{
 	
 	//constructor
 	public Client(String host){
-		super("Client prog!");
+		super("Leeping's Client!");
 		serverIP = host;
 		userText = new JTextField();
 		userText.setEditable(false);
@@ -74,7 +74,7 @@ public class Client extends JFrame{
 			}catch(ClassNotFoundException classNotFoundException){
 				showMessage("\n idk wtf i got \n");
 			}
-		}while(!message.equals("SERVER- END"));
+		}while(!message.equals("KELVIN: END"));
 	}
 	
 	// Close everything
@@ -93,9 +93,9 @@ public class Client extends JFrame{
 	// Send messages to server
 	private void sendMessage(String message){
 		try{
-			output.writeObject("CLIENT - " + message);
+			output.writeObject("LEEPING: " + message);
 			output.flush();
-			showMessage("\nClient - " + message);
+			showMessage("\nLeeping: " + message);
 		}catch(IOException ioException){
 			chatWindow.append("\n Something wrong sending message\n");
 		}

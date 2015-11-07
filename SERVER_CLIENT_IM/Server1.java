@@ -14,7 +14,7 @@ public class Server1 extends JFrame{
 
   // constructor
   public Server1(){
-    super("Kelvin's IM");
+    super("Kelvin's Server");
     userText = new JTextField();
     userText.setEditable(false);
     userText.addActionListener(
@@ -82,7 +82,7 @@ public class Server1 extends JFrame{
 		  }catch(ClassNotFoundException classNotFoundException){
 			  showMessage("\n idk wtf that user sent! \n");
 		  }
-	  }while(!message.equals("CLIENT - END"));
+	  }while(!message.equals("LEEPING: END"));
   }
   
   // Close crap after chatting
@@ -102,9 +102,9 @@ public class Server1 extends JFrame{
   // Send message to client
   private void sendMessage(String message){
 	  try{
-		  output.writeObject("SERVER - " + message);
+		  output.writeObject("KELVIN: " + message);
 		  output.flush();
-		  showMessage("\nSERVER - " + message);
+		  showMessage("\nKELVIN: " + message);
 	  }catch(IOException ioException){
 		  chatWindow.append("\n ERROR: CANNOT SEND MESSAGE! \n");
 	  }
